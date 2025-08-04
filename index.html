@@ -59,6 +59,17 @@
     background: #444;
   }
 
+  #loginForm, #dashboard {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   #loginForm {
     max-width: 300px;
     margin: 40px auto;
@@ -66,7 +77,6 @@
     background: #1e1e1e;
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    transition: all 0.5s ease;
   }
 
   #loginForm input[type="text"],
@@ -95,16 +105,6 @@
     padding: 20px 30px;
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    display: none;
-    opacity: 0;
-    transform: translateY(-50px);
-    transition: all 0.6s ease;
-  }
-
-  #dashboard.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
   }
 
   #message {
@@ -169,10 +169,18 @@
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
   }
 
+  function show(element) {
+    element.classList.add('visible');
+  }
+
+  function hide(element) {
+    element.classList.remove('visible');
+  }
+
   function login(username) {
-    loginForm.style.display = 'none';
+    hide(loginForm);
     userDisplay.textContent = username;
-    dashboard.classList.add('show');
+    setTimeout(() => show(dashboard), 400);
   }
 
   loginBtn.addEventListener('click', () => {
@@ -189,8 +197,11 @@
   logoutBtn.addEventListener('click', () => {
     const confirmLogout = confirm("Are you sure you want to log out?");
     if (confirmLogout) {
-      deleteCookie('username');
-      location.reload();
+      hide(dashboard);
+      setTimeout(() => {
+        deleteCookie('username');
+        location.reload();
+      }, 400);
     }
   });
 
@@ -206,7 +217,11 @@
     const savedUser = getCookie('username');
     if (savedUser) {
       usernameInput.value = savedUser;
-      login(savedUser);
+      hide(loginForm);
+      userDisplay.textContent = savedUser;
+      setTimeout(() => show(dashboard), 100);
+    } else {
+      show(loginForm);
     }
   };
 </script>
