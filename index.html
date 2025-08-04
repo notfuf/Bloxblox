@@ -7,83 +7,110 @@
 <style>
   body {
     font-family: Cursive, "Comic sans ms";
-    margin: 0; padding: 20px;
-    background: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    background: #121212;
+    color: #eee;
   }
+
   header {
-    background: #d6d6d6;
+    background: #1f1f1f;
     padding: 15px;
-    border-bottom: 2px solid #999;
+    border-bottom: 2px solid #333;
     font-weight: bold;
     user-select: none;
+    border-radius: 0 0 12px 12px;
   }
+
   .nav-link {
-    color: #0033cc;
+    color: #66aaff;
     text-decoration: none;
     margin: 0 8px;
     position: relative;
   }
+
   .nav-link:not(:last-child)::after {
     content: "|";
-    color: #666;
+    color: #888;
     position: absolute;
     right: -10px;
     top: 0;
     font-weight: normal;
   }
+
   .nav-link:hover {
     text-decoration: underline;
   }
+
   button {
     padding: 10px 20px;
     font-size: 16px;
-    background: yellow;
-    color: black;
-    border: none;
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
     cursor: pointer;
-    border-radius: 0;
+    border-radius: 8px;
     margin-top: 15px;
     margin-right: 10px;
+    transition: background 0.2s ease;
   }
+
   button:hover {
-    background: #e6e600;
+    background: #444;
   }
+
   #loginForm {
     max-width: 300px;
     margin: 40px auto;
     padding: 25px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    transition: all 0.5s ease;
   }
+
   #loginForm input[type="text"],
   #loginForm input[type="password"] {
     width: 100%;
-    padding: 8px 10px;
+    padding: 10px;
     margin: 8px 0 15px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: #eee;
     box-sizing: border-box;
   }
+
   #password-note {
     font-size: 12px;
-    color: #666;
+    color: #aaa;
     margin-left: 5px;
     font-style: italic;
   }
+
   #dashboard {
     max-width: 600px;
     margin: 40px auto;
-    background: white;
+    background: #1e1e1e;
     padding: 20px 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
     display: none;
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: all 0.6s ease;
   }
+
+  #dashboard.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   #message {
     font-size: 20px;
     margin-top: 25px;
-    color: #333;
+    color: #ccc;
   }
 </style>
 </head>
@@ -95,7 +122,7 @@
 </header>
 
 <div id="loginForm">
-  <h2>Login</h2>
+  <h2>Login / Sign Up</h2>
   <label for="username">Username:</label><br />
   <input type="text" id="username" autocomplete="username" required /><br />
   <label for="password">Password: <span id="password-note">(doesn't matter what your password is)</span></label><br />
@@ -123,7 +150,7 @@
 
   function setCookie(name, value, days) {
     const d = new Date();
-    d.setTime(d.getTime() + days*24*60*60*1000);
+    d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
     document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + d.toUTCString() + ";path=/";
   }
 
@@ -131,9 +158,9 @@
     const cname = name + "=";
     const decodedCookie = decodeURIComponent(document.cookie);
     const ca = decodedCookie.split(';');
-    for(let c of ca) {
-      while(c.charAt(0) === ' ') c = c.substring(1);
-      if(c.indexOf(cname) === 0) return c.substring(cname.length, c.length);
+    for (let c of ca) {
+      while (c.charAt(0) === ' ') c = c.substring(1);
+      if (c.indexOf(cname) === 0) return c.substring(cname.length, c.length);
     }
     return "";
   }
@@ -145,7 +172,7 @@
   function login(username) {
     loginForm.style.display = 'none';
     userDisplay.textContent = username;
-    dashboard.style.display = 'block';
+    dashboard.classList.add('show');
   }
 
   loginBtn.addEventListener('click', () => {
@@ -160,8 +187,11 @@
   });
 
   logoutBtn.addEventListener('click', () => {
-    deleteCookie('username');
-    location.reload();
+    const confirmLogout = confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+      deleteCookie('username');
+      location.reload();
+    }
   });
 
   downloadOfflineBtn.addEventListener('click', () => {
