@@ -6,7 +6,7 @@
 <title>Bloxblox site alpha</title>
 <style>
   body {
-    font-family: Cursive, "Comic Sans MS";
+    font-family: Cursive, "Comic sans ms";
     margin: 0; padding: 20px;
     background: #121212;
     color: #eee;
@@ -17,12 +17,14 @@
     border-bottom: 2px solid #555;
     font-weight: bold;
     user-select: none;
+    text-align: center;
   }
   .nav-link {
-    color: #3399ff;
+    color: #5599ff;
     text-decoration: none;
     margin: 0 8px;
     position: relative;
+    font-weight: 600;
   }
   .nav-link:not(:last-child)::after {
     content: "|";
@@ -38,34 +40,27 @@
   button {
     padding: 10px 20px;
     font-size: 16px;
-    background: #ffeb3b;
+    background: #ffdd00;
     color: black;
     border: none;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-top: 15px;
     margin-right: 10px;
-    transition: background 0.3s ease;
+    font-weight: 600;
+    transition: background 0.3s;
   }
   button:hover {
-    background: #e6e600;
+    background: #e6c900;
   }
-  #loginForm, #dashboard {
+  #loginForm {
     max-width: 300px;
     margin: 40px auto;
     padding: 25px;
     background: #1e1e1e;
     border-radius: 16px;
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  #dashboard {
-    max-width: 600px;
-    padding: 20px 30px;
-    display: none;
-  }
-  #loginForm h2, #dashboard h2 {
-    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    color: #ddd;
   }
   #loginForm input[type="text"],
   #loginForm input[type="password"] {
@@ -73,16 +68,15 @@
     padding: 8px 10px;
     margin: 8px 0 15px 0;
     border: 1px solid #444;
-    border-radius: 8px;
-    background: #333;
+    border-radius: 12px;
+    background: #2c2c2c;
     color: #eee;
     box-sizing: border-box;
-    transition: border-color 0.3s ease;
+    font-size: 14px;
   }
-  #loginForm input[type="text"]:focus,
-  #loginForm input[type="password"]:focus {
-    border-color: #3399ff;
-    outline: none;
+  #loginForm input[type="text"]::placeholder,
+  #loginForm input[type="password"]::placeholder {
+    color: #888;
   }
   #password-note {
     font-size: 12px;
@@ -90,20 +84,25 @@
     margin-left: 5px;
     font-style: italic;
   }
+  #dashboard {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #1e1e1e;
+    padding: 20px 30px;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
+    display: none;
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  #dashboardContent {
+    border-radius: 16px;
+  }
   #message {
     font-size: 20px;
     margin-top: 25px;
     color: #ccc;
   }
-  #logoutBtn {
-    background: #f44336;
-    color: white;
-    margin-left: 10px;
-  }
-  #logoutBtn:hover {
-    background: #d32f2f;
-  }
-
   @keyframes fadeInDown {
     from {
       opacity: 0;
@@ -122,7 +121,6 @@
       transform: translateY(-10px);
     }
   }
-
   .fade-in-down {
     animation: fadeInDown 1s forwards;
   }
@@ -134,32 +132,35 @@
 <body>
 <header>
   <a href="https://notfuf.github.io/bloxblox" class="nav-link">Home</a>
-  <a href="#" class="nav-link" onclick="alert('About page is under construction!')">About</a>
-  <a href="https://discord.gg/EbtSwCFez4" target="_blank" class="nav-link">Contact</a>
+  <a href="#" class="nav-link">About</a>
+  <a href="https://discord.gg/EbtSwCFez4" class="nav-link" target="_blank" rel="noopener noreferrer">Contact</a>
 </header>
 <div id="loginForm">
   <h2>Login / Sign Up</h2>
   <label for="username">Username:</label><br />
-  <input type="text" id="username" autocomplete="username" required /><br />
+  <input type="text" id="username" autocomplete="username" placeholder="No spaces, max 20 chars" required /><br />
   <label for="password">Password: <span id="password-note">(doesn't matter what your password is)</span></label><br />
   <input type="password" id="password" autocomplete="current-password" required /><br />
   <button id="loginBtn">Log In</button>
 </div>
 <div id="dashboard">
-  <h2>Welcome, <span id="userDisplay"></span>!</h2>
-  <button id="downloadOfflineBtn">Download Offline Edition</button>
-  <button id="downloadOnlineBtn">Download Online Edition</button>
-  <button id="logoutBtn">Log Out</button>
-  <p id="message">Site in Construction</p>
+  <div id="dashboardContent">
+    <h2>Welcome, <span id="userDisplay"></span>!</h2>
+    <button id="downloadOfflineBtn">Download Offline Edition</button>
+    <button id="downloadOnlineBtn">Download Online Edition</button>
+    <button id="logoutBtn">Log Out</button>
+    <p id="message">Site in Construction</p>
+  </div>
 </div>
 <script>
   const loginForm = document.getElementById('loginForm');
   const dashboard = document.getElementById('dashboard');
+  const dashboardContent = document.getElementById('dashboardContent');
   const userDisplay = document.getElementById('userDisplay');
   const loginBtn = document.getElementById('loginBtn');
-  const logoutBtn = document.getElementById('logoutBtn');
   const downloadOfflineBtn = document.getElementById('downloadOfflineBtn');
   const downloadOnlineBtn = document.getElementById('downloadOnlineBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
   const usernameInput = document.getElementById('username');
 
   function setCookie(name, value, days) {
@@ -179,46 +180,46 @@
     return "";
   }
 
+  function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  }
+
+  function validateUsername(name) {
+    if (name.length === 0) return false;
+    if (name.length > 20) return false;
+    if (/\s/.test(name)) return false;
+    if (/[^a-zA-Z0-9]/.test(name)) return false;
+    return true;
+  }
+
   function login(username) {
     loginForm.style.display = 'none';
     dashboard.style.display = 'block';
     userDisplay.textContent = username;
-
-    dashboard.classList.remove('fade-in-down', 'float-up');
+    dashboard.classList.remove('fade-in-down');
+    dashboardContent.classList.remove('float-up');
     dashboard.style.opacity = '0';
     dashboard.style.transform = 'translateY(-30px)';
-
-    // fade in + down
+    void dashboard.offsetWidth; // trigger reflow for animation restart
     dashboard.classList.add('fade-in-down');
-
-    // after fadeInDown ends, start floating up/down
     dashboard.addEventListener('animationend', () => {
-      dashboard.classList.add('float-up');
+      dashboardContent.classList.add('float-up');
     }, { once: true });
   }
 
   loginBtn.addEventListener('click', () => {
     const username = usernameInput.value.trim();
     const password = document.getElementById('password').value.trim();
-    const validUsernameRegex = /^[a-zA-Z0-9_]{1,20}$/;
-
-    if (username === '' || password === '') {
-      alert('Please enter both username and password.');
+    if (!validateUsername(username)) {
+      alert('Invalid username. No spaces, max 20 letters, and no special characters.');
       return;
     }
-
-    if (!validUsernameRegex.test(username)) {
-      alert('Username must be under 20 characters, contain no spaces, and only include letters, numbers, or underscores.');
+    if (password === '') {
+      alert('Please enter a password.');
       return;
     }
-
     setCookie('username', username, 7);
     login(username);
-  });
-
-  logoutBtn.addEventListener('click', () => {
-    setCookie('username', '', -1);
-    location.reload();
   });
 
   downloadOfflineBtn.addEventListener('click', () => {
@@ -229,19 +230,25 @@
     window.open('https://mega.nz/file/a841EDSb#x9471UkbCW5PF3PmdiXVFW1P8815MwE8ibmFpeJJLdw', '_blank');
   });
 
+  logoutBtn.addEventListener('click', () => {
+    deleteCookie('username');
+    dashboard.classList.remove('fade-in-down');
+    dashboardContent.classList.remove('float-up');
+    dashboard.style.opacity = '0';
+    dashboard.style.transform = 'translateY(-30px)';
+    setTimeout(() => {
+      dashboard.style.display = 'none';
+      loginForm.style.display = 'block';
+      usernameInput.value = '';
+      document.getElementById('password').value = '';
+    }, 400);
+  });
+
   window.onload = () => {
     const savedUser = getCookie('username');
     if (savedUser) {
       usernameInput.value = savedUser;
       login(savedUser);
-    } else {
-      loginForm.style.display = 'block';
-      loginForm.classList.remove('fade-in-down', 'float-up');
-      loginForm.style.opacity = '0';
-      loginForm.style.transform = 'translateY(-30px)';
-      setTimeout(() => {
-        loginForm.classList.add('fade-in-down');
-      }, 10);
     }
   };
 </script>
