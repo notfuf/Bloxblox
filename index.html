@@ -37,6 +37,15 @@
   .nav-link:hover {
     text-decoration: underline;
   }
+  #clock {
+    color: white;
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0 30px 0;
+    user-select: none;
+    font-family: monospace, monospace;
+  }
   button {
     padding: 10px 20px;
     font-size: 16px;
@@ -55,7 +64,7 @@
   }
   #loginForm {
     max-width: 300px;
-    margin: 40px auto;
+    margin: 0 auto 40px auto;
     padding: 25px;
     background: #1e1e1e;
     border-radius: 16px;
@@ -86,7 +95,7 @@
   }
   #dashboard {
     max-width: 600px;
-    margin: 40px auto;
+    margin: 0 auto 40px auto;
     background: #1e1e1e;
     padding: 20px 30px;
     border-radius: 16px;
@@ -135,14 +144,18 @@
   <a href="#" class="nav-link">About</a>
   <a href="https://discord.gg/EbtSwCFez4" class="nav-link" target="_blank" rel="noopener noreferrer">Contact</a>
 </header>
+
+<div id="clock">00:00</div>
+
 <div id="loginForm">
   <h2>Login / Sign Up</h2>
   <label for="username">Username:</label><br />
-  <input type="text" id="username" autocomplete="username" placeholder="No spaces, max 20 chars" required /><br />
-  <label for="password">Password: <span id="password-note">(doesn't matter what your password is)</span></label><br />
-  <input type="password" id="password" autocomplete="current-password" required /><br />
+  <input type="text" id="username" autocomplete="username" placeholder="3-20 chars, no spaces or special chars" required /><br />
+  <label for="password">Password: <span id="password-note">(not required)</span></label><br />
+  <input type="password" id="password" autocomplete="current-password" /><br />
   <button id="loginBtn">Log In</button>
 </div>
+
 <div id="dashboard">
   <div id="dashboardContent">
     <h2>Welcome, <span id="userDisplay"></span>!</h2>
@@ -152,7 +165,20 @@
     <p id="message">Site in Construction</p>
   </div>
 </div>
+
 <script>
+  const clock = document.getElementById('clock');
+  function updateClock() {
+    const now = new Date();
+    let h = now.getHours();
+    let m = now.getMinutes();
+    if(h < 10) h = '0' + h;
+    if(m < 10) m = '0' + m;
+    clock.textContent = `${h}:${m}`;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
   const loginForm = document.getElementById('loginForm');
   const dashboard = document.getElementById('dashboard');
   const dashboardContent = document.getElementById('dashboardContent');
@@ -185,8 +211,7 @@
   }
 
   function validateUsername(name) {
-    if (name.length === 0) return false;
-    if (name.length > 20) return false;
+    if (name.length < 3 || name.length > 20) return false;
     if (/\s/.test(name)) return false;
     if (/[^a-zA-Z0-9]/.test(name)) return false;
     return true;
@@ -200,7 +225,7 @@
     dashboardContent.classList.remove('float-up');
     dashboard.style.opacity = '0';
     dashboard.style.transform = 'translateY(-30px)';
-    void dashboard.offsetWidth; // trigger reflow for animation restart
+    void dashboard.offsetWidth;
     dashboard.classList.add('fade-in-down');
     dashboard.addEventListener('animationend', () => {
       dashboardContent.classList.add('float-up');
@@ -209,13 +234,8 @@
 
   loginBtn.addEventListener('click', () => {
     const username = usernameInput.value.trim();
-    const password = document.getElementById('password').value.trim();
     if (!validateUsername(username)) {
-      alert('Invalid username. No spaces, max 20 letters, and no special characters.');
-      return;
-    }
-    if (password === '') {
-      alert('Please enter a password.');
+      alert('Invalid username. Must be 3-20 characters, no spaces or special characters.');
       return;
     }
     setCookie('username', username, 7);
