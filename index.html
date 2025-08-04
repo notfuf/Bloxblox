@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Login & Dashboard</title>
+<title>Bloxblox site alpha</title>
 <style>
   body {
     font-family: Cursive, "Comic sans ms";
@@ -93,6 +93,7 @@
   <a href="#" class="nav-link">About</a>
   <a href="#" class="nav-link">Contact</a>
 </header>
+
 <div id="loginForm">
   <h2>Login</h2>
   <label for="username">Username:</label><br />
@@ -101,12 +102,15 @@
   <input type="password" id="password" autocomplete="current-password" required /><br />
   <button id="loginBtn">Log In</button>
 </div>
+
 <div id="dashboard">
   <h2>Welcome, <span id="userDisplay"></span>!</h2>
   <button id="downloadOfflineBtn">Download Offline Edition</button>
   <button id="downloadOnlineBtn">Download Online Edition</button>
+  <button id="logoutBtn">Log Out</button>
   <p id="message">Site in Construction</p>
 </div>
+
 <script>
   const loginForm = document.getElementById('loginForm');
   const dashboard = document.getElementById('dashboard');
@@ -114,12 +118,15 @@
   const loginBtn = document.getElementById('loginBtn');
   const downloadOfflineBtn = document.getElementById('downloadOfflineBtn');
   const downloadOnlineBtn = document.getElementById('downloadOnlineBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
   const usernameInput = document.getElementById('username');
+
   function setCookie(name, value, days) {
     const d = new Date();
     d.setTime(d.getTime() + days*24*60*60*1000);
     document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + d.toUTCString() + ";path=/";
   }
+
   function getCookie(name) {
     const cname = name + "=";
     const decodedCookie = decodeURIComponent(document.cookie);
@@ -130,11 +137,17 @@
     }
     return "";
   }
+
+  function deleteCookie(name) {
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+  }
+
   function login(username) {
     loginForm.style.display = 'none';
     userDisplay.textContent = username;
     dashboard.style.display = 'block';
   }
+
   loginBtn.addEventListener('click', () => {
     const username = usernameInput.value.trim();
     const password = document.getElementById('password').value.trim();
@@ -145,12 +158,20 @@
     setCookie('username', username, 7);
     login(username);
   });
+
+  logoutBtn.addEventListener('click', () => {
+    deleteCookie('username');
+    location.reload();
+  });
+
   downloadOfflineBtn.addEventListener('click', () => {
     window.open('https://mega.nz/file/np4yWaxT#YTLSC1U-Kf9gHkxYDCn3dJ7QGcgHEI7ooEpNi1PCakE', '_blank');
   });
+
   downloadOnlineBtn.addEventListener('click', () => {
     window.open('https://mega.nz/file/a841EDSb#x9471UkbCW5PF3PmdiXVFW1P8815MwE8ibmFpeJJLdw', '_blank');
   });
+
   window.onload = () => {
     const savedUser = getCookie('username');
     if (savedUser) {
