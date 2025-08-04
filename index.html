@@ -2,117 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>BloxBlox - Home</title>
+  <title>{{TITLE}} – BloxBlox</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #e5e5e5;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-
-    header {
-      background-color: #d6d6d6;
-      padding: 15px 0;
-      border-bottom: 2px solid #999;
-    }
-
-    .nav-link {
-      margin: 0 8px;
-      text-decoration: none;
-      color: #000;
-      font-weight: bold;
-    }
-
-    .nav-link:hover {
-      text-decoration: underline;
-    }
-
-    #main {
-      margin-top: 50px;
-    }
-
-    #loginBox {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      display: inline-block;
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    input {
-      display: block;
-      margin: 10px auto;
-      padding: 8px;
-      width: 200px;
-      font-size: 14px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    #welcome {
-      font-size: 24px;
-      margin-top: 30px;
-      display: none;
-      color: #333;
-    }
+    body { background:#e5e5e5; margin:0; font-family: Verdana, sans-serif; text-align:center; }
+    a { color:#0033cc; text-decoration:none; font-weight:bold; }
+    a:hover { text-decoration: underline; }
+    .container { padding:50px; }
   </style>
 </head>
 <body>
-
-  <header>
-    <a class="nav-link" href="https://notfuf.github.io/bloxblox/user">My ROBLOX</a> |
-    <a class="nav-link" href="https://notfuf.github.io/bloxblox/games">Games</a> |
-    <a class="nav-link" href="https://notfuf.github.io/bloxblox/catalog">Catalog</a> |
-    <a class="nav-link" href="https://notfuf.github.io/bloxblox/people">People</a> |
-    <a class="nav-link" href="https://notfuf.github.io/bloxblox/buildersclub">Builders Club</a> |
-    <a class="nav-link" href="https://notfuf.github.io/bloxblox/forum">Forum</a> |
-    <a class="nav-link" href="https://notfuf.github.io/bloxblox/news">News</a> |
-    <a class="nav-link" href="https://notfuf.github.io/bloxblox/parents">Parents</a> |
-    <a class="nav-link" href="https://notfuf.github.io/bloxblox/help">Help</a>
-  </header>
-
-  <div id="main">
-    <div id="loginBox">
-      <h2>Member Login</h2>
-      <input type="text" id="username" placeholder="Character Name" />
-      <input type="password" id="password" placeholder="Password" />
-      <button onclick="mockLogin()">Login</button>
-    </div>
-
-    <div id="welcome"></div>
+  <div class="container">
+    <h1>{{TITLE}} Page</h1>
+    <p>This is the {{TITLE}} section of BloxBlox.</p>
+    <p><a href="https://notfuf.github.io/bloxblox/">← Back to Home</a></p>
   </div>
-
-  <script>
-    function mockLogin() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-
-      if (username.trim() === '') {
-        alert("Please enter a character name.");
-        return;
-      }
-
-      // Fake login success
-      document.getElementById('loginBox').style.display = 'none';
-      const welcome = document.getElementById('welcome');
-      welcome.textContent = `Welcome, ${username}! You are now logged in.`;
-      welcome.style.display = 'block';
-    }
-  </script>
-
 </body>
 </html>
