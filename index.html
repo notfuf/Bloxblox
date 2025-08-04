@@ -1,20 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>{{TITLE}} – BloxBlox</title>
-  <style>
-    body { background:#e5e5e5; margin:0; font-family: Verdana, sans-serif; text-align:center; }
-    a { color:#0033cc; text-decoration:none; font-weight:bold; }
-    a:hover { text-decoration: underline; }
-    .container { padding:50px; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login & Dashboard</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 20px;
+    background: #f0f0f0;
+  }
+  header {
+    background: #d6d6d6;
+    padding: 15px;
+    border-bottom: 2px solid #999;
+    font-weight: bold;
+    user-select: none;
+  }
+  .nav-link {
+    color: #0033cc;
+    text-decoration: none;
+    margin: 0 8px;
+    position: relative;
+  }
+  .nav-link:not(:last-child)::after {
+    content: "|";
+    color: #666;
+    position: absolute;
+    right: -10px;
+    top: 0;
+    font-weight: normal;
+  }
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: yellow;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 0;
+    margin-top: 15px;
+  }
+  button:hover {
+    background: #e6e600;
+  }
+  #loginForm {
+    max-width: 300px;
+    margin: 40px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  #loginForm input[type="text"],
+  #loginForm input[type="password"] {
+    width: 100%;
+    padding: 8px 10px;
+    margin: 8px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  #password-note {
+    font-size: 12px;
+    color: #666;
+    margin-left: 5px;
+    font-style: italic;
+  }
+  #dashboard {
+    max-width: 600px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: none;
+  }
+  #message {
+    font-size: 20px;
+    margin-top: 25px;
+    color: #333;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>{{TITLE}} Page</h1>
-    <p>This is the {{TITLE}} section of BloxBlox.</p>
-    <p><a href="https://notfuf.github.io/bloxblox/">← Back to Home</a></p>
-  </div>
+<header>
+  <a href="#" class="nav-link">Home</a>
+  <a href="#" class="nav-link">About</a>
+  <a href="#" class="nav-link">Contact</a>
+</header>
+<div id="loginForm">
+  <h2>Login</h2>
+  <label for="username">Username:</label><br />
+  <input type="text" id="username" autocomplete="username" required /><br />
+  <label for="password">Password: <span id="password-note">(doesn't matter what your password is)</span></label><br />
+  <input type="password" id="password" autocomplete="current-password" required /><br />
+  <button id="loginBtn">Log In</button>
+</div>
+<div id="dashboard">
+  <h2>Welcome, <span id="userDisplay"></span>!</h2>
+  <button id="downloadBtn">Download</button>
+  <p id="message">Site in Construction</p>
+</div>
+<script>
+  const loginForm = document.getElementById('loginForm');
+  const dashboard = document.getElementById('dashboard');
+  const userDisplay = document.getElementById('userDisplay');
+  const loginBtn = document.getElementById('loginBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const usernameInput = document.getElementById('username');
+  function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + days*24*60*60*1000);
+    document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + d.toUTCString() + ";path=/";
+  }
+  function getCookie(name) {
+    const cname = name + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for(let c of ca) {
+      while(c.charAt(0) === ' ') c = c.substring(1);
+      if(c.indexOf(cname) === 0) return c.substring(cname.length, c.length);
+    }
+    return "";
+  }
+  function login(username) {
+    loginForm.style.display = 'none';
+    userDisplay.textContent = username;
+    dashboard.style.display = 'block';
+  }
+  loginBtn.addEventListener('click', () => {
+    const username = usernameInput.value.trim();
+    const password = document.getElementById('password').value.trim();
+    if (username === '' || password === '') {
+      alert('Please enter both username and password.');
+      return;
+    }
+    setCookie('username', username, 7);
+    login(username);
+  });
+  downloadBtn.addEventListener('click', () => {
+    const data = new Blob(['This is a sample download content.'], {type: 'text/plain'});
+    const url = window.URL.createObjectURL(data);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'sample.txt';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  });
+  window.onload = () => {
+    const savedUser = getCookie('username');
+    if (savedUser) {
+      usernameInput.value = savedUser;
+      login(savedUser);
+    }
+  };
+</script>
 </body>
 </html>
