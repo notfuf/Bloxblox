@@ -7,76 +7,99 @@
         body {
             background-color: #f2f2f2;
             font-family: Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
         }
+
+        #Header, .Navigation, #Footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
         #ErrorMessage {
-            padding: 20px;
+            max-width: 800px;
+            margin: 50px auto;
             background-color: #ffffff;
             border: 2px solid #cccccc;
-            margin: 50px auto;
-            width: 800px;
+            padding: 40px;
+            text-align: center;
         }
+
         #ErrorMessage h1 {
             color: #cc0000;
-            font-size: 24px;
+            font-size: 28px;
+            margin-bottom: 10px;
         }
+
+        #ErrorMessage p {
+            font-size: 16px;
+            color: #333;
+        }
+
         #ErrorMessage img {
-            float: left;
-            margin-right: 20px;
+            display: block;
+            margin: 0 auto 20px auto;
         }
+
         .BackButton {
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #c00;
+            background-color: #cc0000;
             color: white;
             font-weight: bold;
             text-decoration: none;
-            border-radius: 3px;
+            border-radius: 4px;
         }
+
         .BackButton:hover {
-            background-color: #900;
+            background-color: #990000;
+        }
+
+        .Legalese {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .MenuItem {
+            text-decoration: none;
+            color: #0033cc;
+            font-weight: bold;
+        }
+
+        .MenuItem:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div id="Header">
-        <div id="Banner">
-            <div id="Logo">
-                <a href="https://web.archive.org/web/20080822192751/http://www.roblox.com/">
-                    <img src="roblox2008sitehome_bestanden/roblox_logo.png" alt="ROBLOX Logo" border="0" />
-                </a>
-            </div>
-        </div>
-        <div class="Navigation">
-            <span><a class="MenuItem" href="#">My ROBLOX</a></span>
-            <span class="Separator">&nbsp;|&nbsp;</span>
-            <span><a class="MenuItem" href="#">Games</a></span>
-            <span class="Separator">&nbsp;|&nbsp;</span>
-            <span><a class="MenuItem" href="#">Catalog</a></span>
-            <span class="Separator">&nbsp;|&nbsp;</span>
-            <span><a class="MenuItem" href="#">Forum</a></span>
-            <span class="Separator">&nbsp;|&nbsp;</span>
-            <span><a class="MenuItem" href="#">Help</a></span>
-        </div>
+        <a href="https://notfuf.github.io/bloxblox/">
+            <img src="roblox2008sitehome_bestanden/roblox_logo.png" alt="ROBLOX Logo" width="200" />
+        </a>
+    </div>
+
+    <div class="Navigation">
+        <span><a class="MenuItem" href="https://notfuf.github.io/bloxblox/user">My ROBLOX</a></span> |
+        <span><a class="MenuItem" href="https://notfuf.github.io/bloxblox/games">Games</a></span> |
+        <span><a class="MenuItem" href="https://notfuf.github.io/bloxblox/catalog">Catalog</a></span> |
+        <span><a class="MenuItem" href="https://notfuf.github.io/bloxblox/forum">Forum</a></span> |
+        <span><a class="MenuItem" href="https://notfuf.github.io/bloxblox/help">Help</a></span>
     </div>
 
     <div id="ErrorMessage">
-        <img src="roblox2008sitehome_bestanden/BannerPlay.png" width="150" height="60" alt="Oops!" />
+        <img src="roblox2008sitehome_bestanden/NewFrontPageGuy.png" width="130" height="130" alt="Sad Roblox Figure" />
         <h1>404 - Page Not Found</h1>
-        <p>
-            Uh-oh! The page you're looking for doesn't exist or has been moved.<br />
-            It's possible it was "bloxxed" in a building accident.
-        </p>
-        <p>
-            You can return to the fun by heading back to the <a href="#" class="BackButton">Games Page</a>.
-        </p>
+        <p>Uh-oh! The page you're looking for doesn't exist or has been moved.<br>
+        It may have been "bloxxed" in a building accident.</p>
+
+        <a href="https://notfuf.github.io/bloxblox/" class="BackButton">Return to Home</a>
     </div>
 
     <div id="Footer">
         <hr />
         <p class="Legalese">
-            ROBLOX Corporation ©2008. <br />
-            This fan-made 404 page is styled after the classic Roblox.com. <br />
+            ROBLOX Corporation ©2008. This is a fan-made 404 page styled after classic ROBLOX.<br>
             Not affiliated with LEGO, Nintendo, or pirates — ARrrr!
         </p>
     </div>
