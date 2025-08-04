@@ -1,229 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Bloxblox site alpha</title>
-<style>
-  body {
-    font-family: Cursive, "Comic sans ms";
-    margin: 0;
-    padding: 20px;
-    background: #121212;
-    color: #eee;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bloxblox site alpha</title>
+  <style>
+    body {
+      font-family: Cursive, "Comic sans ms";
+      margin: 0;
+      padding: 20px;
+      background: #121212;
+      color: #eee;
+    }
 
-  header {
-    background: #1f1f1f;
-    padding: 15px;
-    border-bottom: 2px solid #333;
-    font-weight: bold;
-    user-select: none;
-    border-radius: 0 0 12px 12px;
-  }
+    header {
+      background: #1f1f1f;
+      padding: 15px;
+      border-bottom: 2px solid #333;
+      font-weight: bold;
+      user-select: none;
+      border-radius: 0 0 12px 12px;
+    }
 
-  .nav-link {
-    color: #66aaff;
-    text-decoration: none;
-    margin: 0 8px;
-    position: relative;
-  }
+    .nav-link {
+      color: #66aaff;
+      text-decoration: none;
+      margin: 0 8px;
+      position: relative;
+    }
 
-  .nav-link:not(:last-child)::after {
-    content: "|";
-    color: #888;
-    position: absolute;
-    right: -10px;
-    top: 0;
-    font-weight: normal;
-  }
+    .nav-link:not(:last-child)::after {
+      content: "|";
+      color: #888;
+      position: absolute;
+      right: -10px;
+      top: 0;
+      font-weight: normal;
+    }
 
-  .nav-link:hover {
-    text-decoration: underline;
-  }
+    .nav-link:hover {
+      text-decoration: underline;
+    }
 
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background: #333;
-    color: #fff;
-    border: 1px solid #555;
-    cursor: pointer;
-    border-radius: 8px;
-    margin-top: 15px;
-    margin-right: 10px;
-    transition: background 0.2s ease;
-  }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #333;
+      color: #fff;
+      border: 1px solid #555;
+      cursor: pointer;
+      border-radius: 8px;
+      margin-top: 15px;
+      margin-right: 10px;
+      transition: background 0.2s ease;
+    }
 
-  button:hover {
-    background: #444;
-  }
+    button:hover {
+      background: #444;
+    }
 
-  #loginForm, #dashboard {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-  }
+    #loginForm, #dashboard {
+      max-width: 300px;
+      margin: 80px auto;
+      padding: 25px;
+      background: #1e1e1e;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      display: none;
+    }
 
-  .visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
+    #loginForm input[type="text"],
+    #loginForm input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px 0;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 8px;
+      color: #eee;
+      box-sizing: border-box;
+    }
 
-  #loginForm {
-    max-width: 300px;
-    margin: 40px auto;
-    padding: 25px;
-    background: #1e1e1e;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  }
+    #password-note {
+      font-size: 12px;
+      color: #aaa;
+      margin-left: 5px;
+      font-style: italic;
+    }
 
-  #loginForm input[type="text"],
-  #loginForm input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0 15px 0;
-    background: #2a2a2a;
-    border: 1px solid #444;
-    border-radius: 8px;
-    color: #eee;
-    box-sizing: border-box;
-  }
+    #message {
+      font-size: 20px;
+      margin-top: 25px;
+      color: #ccc;
+    }
 
-  #password-note {
-    font-size: 12px;
-    color: #aaa;
-    margin-left: 5px;
-    font-style: italic;
-  }
+    /* Animation effect on load */
+    .animated-load {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease-out forwards;
+    }
 
-  #dashboard {
-    max-width: 600px;
-    margin: 40px auto;
-    background: #1e1e1e;
-    padding: 20px 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  }
-
-  #message {
-    font-size: 20px;
-    margin-top: 25px;
-    color: #ccc;
-  }
-</style>
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <a href="#" class="nav-link">Home</a>
-  <a href="#" class="nav-link">About</a>
-  <a href="#" class="nav-link">Contact</a>
-</header>
+  <header>
+    <a href="#" class="nav-link">Home</a>
+    <a href="#" class="nav-link">About</a>
+    <a href="#" class="nav-link">Contact</a>
+  </header>
 
-<div id="loginForm">
-  <h2>Login / Sign Up</h2>
-  <label for="username">Username:</label><br />
-  <input type="text" id="username" autocomplete="username" required /><br />
-  <label for="password">Password: <span id="password-note">(doesn't matter what your password is)</span></label><br />
-  <input type="password" id="password" autocomplete="current-password" required /><br />
-  <button id="loginBtn">Log In</button>
-</div>
+  <div id="loginForm">
+    <h2>Login / Sign Up</h2>
+    <label for="username">Username:</label><br />
+    <input type="text" id="username" autocomplete="username" required /><br />
+    <label for="password">Password: <span id="password-note">(doesn't matter what your password is)</span></label><br />
+    <input type="password" id="password" autocomplete="current-password" required /><br />
+    <button id="loginBtn">Log In</button>
+  </div>
 
-<div id="dashboard">
-  <h2>Welcome, <span id="userDisplay"></span>!</h2>
-  <button id="downloadOfflineBtn">Download Offline Edition</button>
-  <button id="downloadOnlineBtn">Download Online Edition</button>
-  <button id="logoutBtn">Log Out</button>
-  <p id="message">Site in Construction</p>
-</div>
+  <div id="dashboard">
+    <h2>Welcome, <span id="userDisplay"></span>!</h2>
+    <button id="downloadOfflineBtn">Download Offline Edition</button>
+    <button id="downloadOnlineBtn">Download Online Edition</button>
+    <button id="logoutBtn">Log Out</button>
+    <p id="message">Site in Construction</p>
+  </div>
 
-<script>
-  const loginForm = document.getElementById('loginForm');
-  const dashboard = document.getElementById('dashboard');
-  const userDisplay = document.getElementById('userDisplay');
-  const loginBtn = document.getElementById('loginBtn');
-  const downloadOfflineBtn = document.getElementById('downloadOfflineBtn');
-  const downloadOnlineBtn = document.getElementById('downloadOnlineBtn');
-  const logoutBtn = document.getElementById('logoutBtn');
-  const usernameInput = document.getElementById('username');
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const dashboard = document.getElementById('dashboard');
+    const userDisplay = document.getElementById('userDisplay');
+    const loginBtn = document.getElementById('loginBtn');
+    const downloadOfflineBtn = document.getElementById('downloadOfflineBtn');
+    const downloadOnlineBtn = document.getElementById('downloadOnlineBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const usernameInput = document.getElementById('username');
 
-  function setCookie(name, value, days) {
-    const d = new Date();
-    d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + d.toUTCString() + ";path=/";
-  }
-
-  function getCookie(name) {
-    const cname = name + "=";
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const ca = decodedCookie.split(';');
-    for (let c of ca) {
-      while (c.charAt(0) === ' ') c = c.substring(1);
-      if (c.indexOf(cname) === 0) return c.substring(cname.length, c.length);
+    function setCookie(name, value, days) {
+      const d = new Date();
+      d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+      document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + d.toUTCString() + ";path=/";
     }
-    return "";
-  }
 
-  function deleteCookie(name) {
-    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
-  }
-
-  function show(element) {
-    element.classList.add('visible');
-  }
-
-  function hide(element) {
-    element.classList.remove('visible');
-  }
-
-  function login(username) {
-    hide(loginForm);
-    userDisplay.textContent = username;
-    setTimeout(() => show(dashboard), 400);
-  }
-
-  loginBtn.addEventListener('click', () => {
-    const username = usernameInput.value.trim();
-    const password = document.getElementById('password').value.trim();
-    if (username === '' || password === '') {
-      alert('Please enter both username and password.');
-      return;
+    function getCookie(name) {
+      const cname = name + "=";
+      const decodedCookie = decodeURIComponent(document.cookie);
+      const ca = decodedCookie.split(';');
+      for (let c of ca) {
+        while (c.charAt(0) === ' ') c = c.substring(1);
+        if (c.indexOf(cname) === 0) return c.substring(cname.length, c.length);
+      }
+      return "";
     }
-    setCookie('username', username, 7);
-    login(username);
-  });
 
-  logoutBtn.addEventListener('click', () => {
-    const confirmLogout = confirm("Are you sure you want to log out?");
-    if (confirmLogout) {
-      hide(dashboard);
-      setTimeout(() => {
+    function deleteCookie(name) {
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+    }
+
+    function login(username) {
+      loginForm.style.display = 'none';
+      userDisplay.textContent = username;
+      dashboard.style.display = 'block';
+      dashboard.classList.add('animated-load');
+    }
+
+    loginBtn.addEventListener('click', () => {
+      const username = usernameInput.value.trim();
+      const password = document.getElementById('password').value.trim();
+      if (username === '' || password === '') {
+        alert('Please enter both username and password.');
+        return;
+      }
+      setCookie('username', username, 7);
+      login(username);
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      const confirmLogout = confirm("Are you sure you want to log out?");
+      if (confirmLogout) {
         deleteCookie('username');
         location.reload();
-      }, 400);
-    }
-  });
+      }
+    });
 
-  downloadOfflineBtn.addEventListener('click', () => {
-    window.open('https://mega.nz/file/np4yWaxT#YTLSC1U-Kf9gHkxYDCn3dJ7QGcgHEI7ooEpNi1PCakE', '_blank');
-  });
+    downloadOfflineBtn.addEventListener('click', () => {
+      window.open('https://mega.nz/file/np4yWaxT#YTLSC1U-Kf9gHkxYDCn3dJ7QGcgHEI7ooEpNi1PCakE', '_blank');
+    });
 
-  downloadOnlineBtn.addEventListener('click', () => {
-    window.open('https://mega.nz/file/a841EDSb#x9471UkbCW5PF3PmdiXVFW1P8815MwE8ibmFpeJJLdw', '_blank');
-  });
+    downloadOnlineBtn.addEventListener('click', () => {
+      window.open('https://mega.nz/file/a841EDSb#x9471UkbCW5PF3PmdiXVFW1P8815MwE8ibmFpeJJLdw', '_blank');
+    });
 
-  window.onload = () => {
-    const savedUser = getCookie('username');
-    if (savedUser) {
-      usernameInput.value = savedUser;
-      hide(loginForm);
-      userDisplay.textContent = savedUser;
-      setTimeout(() => show(dashboard), 100);
-    } else {
-      show(loginForm);
-    }
-  };
-</script>
+    window.onload = () => {
+      const savedUser = getCookie('username');
+      if (savedUser) {
+        usernameInput.value = savedUser;
+        userDisplay.textContent = savedUser;
+        dashboard.style.display = 'block';
+        dashboard.classList.add('animated-load');
+      } else {
+        loginForm.style.display = 'block';
+        loginForm.classList.add('animated-load');
+      }
+    };
+  </script>
 </body>
 </html>
