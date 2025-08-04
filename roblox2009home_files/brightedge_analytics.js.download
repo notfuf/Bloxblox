@@ -1,0 +1,37 @@
+var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
+if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
+{
+  let window = _____WB$wombat$assign$function_____("window");
+  let self = _____WB$wombat$assign$function_____("self");
+  let document = _____WB$wombat$assign$function_____("document");
+  let location = _____WB$wombat$assign$function_____("location");
+  let top = _____WB$wombat$assign$function_____("top");
+  let parent = _____WB$wombat$assign$function_____("parent");
+  let frames = _____WB$wombat$assign$function_____("frames");
+  let opener = _____WB$wombat$assign$function_____("opener");
+
+var _bright=new Object({_initialize:function(id)
+{_bright.id=id;return _bright;},_trackBright:function()
+{var url="https://web.archive.org/web/20090605171651/http://analytics.brightedge.com/brightedge.php";url=url+"?id="+escape(_bright.id);location_href=escape(location.href);if(window.location&&window.location.href)location_href=escape(window.location.href);ref=escape(document.referrer);if(window.document&&window.document.referrer)ref=escape(window.document.referrer);url=url+"&url="+location_href;url=url+"&ref="+ref;url=url+"&title="+escape(document.title);metaDescription=getmetaContents('description');url=url+"&metadesc="+escape(metaDescription);metaKeywords=getmetaContents('keywords');url=url+"&metakeywords="+escape(metaKeywords);var img=new Image(1,1);img.src=url;img.onload=function() {};}});function getmetaContents(mn){var m=document.getElementsByTagName('meta');for(var i in m){if(m[i].name==null)continue;if((m[i].name).toLowerCase()==mn.toLowerCase()){var returnStr=m[i].content;if(returnStr.length>255)returnStr=returnStr.substring(0, 255);return returnStr;}}}
+
+}
+/*
+     FILE ARCHIVED ON 17:16:51 Jun 05, 2009 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 17:31:44 Aug 04, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.824
+  exclusion.robots: 0.028
+  exclusion.robots.policy: 0.012
+  esindex: 0.012
+  cdx.remote: 31.839
+  LoadShardBlock: 821.007 (6)
+  PetaboxLoader3.datanode: 592.227 (7)
+  PetaboxLoader3.resolve: 166.172 (2)
+  load_resource: 131.416
+*/

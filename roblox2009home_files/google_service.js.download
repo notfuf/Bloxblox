@@ -1,0 +1,41 @@
+var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
+if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
+{
+  let window = _____WB$wombat$assign$function_____("window");
+  let self = _____WB$wombat$assign$function_____("self");
+  let document = _____WB$wombat$assign$function_____("document");
+  let location = _____WB$wombat$assign$function_____("location");
+  let top = _____WB$wombat$assign$function_____("top");
+  let parent = _____WB$wombat$assign$function_____("parent");
+  let frames = _____WB$wombat$assign$function_____("frames");
+  let opener = _____WB$wombat$assign$function_____("opener");
+
+(function(){
+var c=null,h=window,i="length",j="prototype",k="GA_jstiming",l="join";function n(){this.t={};this.tick=function(a,b){this.t[a]=[(new Date).getTime(),b]};this.tick("start")}var o=new n;h.GA_jstiming={Timer:n,load:o};if(h[k])h[k].report=function(a,b){var d="",e=a.t,f=e.start;delete e.start;var g=[],q=[];for(var m in e)if(!(m.indexOf("_")==0)){var r=e[m][1];if(r)e[r][0]&&q.push(m+"."+(e[m][0]-e[r][0]));else f&&g.push(m+"."+(e[m][0]-f[0]))}if(b)for(var u in b)d+="&"+u+"="+b[u];(new Image).src=["https://web.archive.org/web/20090603185727/http://csi.gstatic.com/csi?v=3&s=gam&action=",a.name,q[i]?"&it="+q[l](",")+d:d,"&rt=",g[l](",")][l]("")};function p(a,b){var d=parseFloat(a);return isNaN(d)||d>1||d<0?b:d};var s="pubads.g.doubleclick.net",t="partner.googleadservices.com",v=s,w=t;var x=this,y=function(a,b,d){var e=a.split("."),f=d||x;!(e[0]in f)&&f.execScript&&f.execScript("var "+e[0]);for(var g;e[i]&&(g=e.shift());)if(!e[i]&&b!==undefined)f[g]=b;else f=f[g]?f[g]:(f[g]={})};Math.floor(Math.random()*2147483648).toString(36);var z=function(a,b,d){y(a,b,d)};if(h.a==c)h.a={};h.GS_googleAddAdSenseService=function(a){return A("adsense",a)};z("window.GS_googleAddAdSenseService",h.GS_googleAddAdSenseService);h.GS_googleEnableAllServices=function(){B()};z("window.GS_googleEnableAllServices",h.GS_googleEnableAllServices);h.GS_googleResetAllServices=function(){h.a={}};z("window.GS_googleResetAllServices",h.GS_googleResetAllServices);h.GS_googleGetIdsForAdSenseService=function(){var a="adsense";return C(a)};z("window.GS_googleGetIdsForAdSenseService",h.GS_googleGetIdsForAdSenseService);
+h.GS_googleFindService=function(a){return D(a)};z("window.GS_googleFindService",h.GS_googleFindService);function E(a){this.g=a;this.b=[]}E[j].toString=function(){for(var a="["+this.g+" ids: ",b=0;b<this.b[i];b++){if(b>0)a+=",";a+=this.b[b]}a+="]";return a};E[j].e=function(){return this.b[l]()};var H=function(a){if(a=="adsense")return new F;return new G},A=function(a,b){if(!(b&&typeof b=="string"&&b[i]>0))return c;if(a==c)return c;var d=h.a[a];if(d==c){d=H(a);h.a[a]=d}d.c(b);return d};
+E[j].c=function(a){for(var b=0;b<this.b[i];b++)if(a==this.b[b])return;this.b[this.b[i]]=a};var B=function(){for(var a in h.a){var b=h.a[a];typeof b=="function"||b.enable()}},D=function(a){var b=a==c?c:h.a[a];return b},C=function(a){var b=a==c?c:h.a[a];return b==c?"":b.e()};function G(){this.superclass=E;this.superclass("unknown")}G.prototype=new E("unknown");G[j].enable=function(){};function F(){this.superclass=E;this.superclass("adsense");this.f=false}F.prototype=new E("adsense");
+F[j].d=function(a,b,d){if(a.google_new_gam_domain_checked!=1){var e=Math.random();if(e<d){var f="http://"+v+"/gampad/test_gam_domain.js",g="script";b.write("<"+g+' src="'+f+'"></'+g+">");a.google_new_gam_domain_checked=1}}};F[j].enable=function(){if(!this.f){var a="script";this.d(h,document,p("1",0));var b="google_ads.js";document.write("<"+a+' src="http://'+w+"/gampad/"+b+'"><\/script>');this.f=true;if(h[k]&&h[k].Timer){h[k].load.name="load";h[k].load.tick("start")}}};
+})()
+
+
+}
+/*
+     FILE ARCHIVED ON 18:57:27 Jun 03, 2009 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 17:31:50 Aug 04, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.868
+  exclusion.robots: 0.031
+  exclusion.robots.policy: 0.012
+  esindex: 0.012
+  cdx.remote: 86.633
+  LoadShardBlock: 455.433 (6)
+  PetaboxLoader3.datanode: 428.812 (7)
+  load_resource: 547.08
+  PetaboxLoader3.resolve: 443.322
+*/
