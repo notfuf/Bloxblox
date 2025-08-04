@@ -57,8 +57,7 @@
     background: #1e1e1e;
     border-radius: 16px;
     opacity: 0;
-    transform: translateY(-20px);
-    animation: fadeInFloat 1s forwards;
+    transform: translateY(-30px);
   }
   #dashboard {
     max-width: 600px;
@@ -104,11 +103,31 @@
   #logoutBtn:hover {
     background: #d32f2f;
   }
-  @keyframes fadeInFloat {
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
     to {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .fade-in-down {
+    animation: fadeInDown 1s forwards;
+  }
+  .float-up {
+    animation: floatUp 3s ease-in-out infinite alternate;
   }
 </style>
 </head>
@@ -164,13 +183,18 @@
     loginForm.style.display = 'none';
     dashboard.style.display = 'block';
     userDisplay.textContent = username;
+
+    dashboard.classList.remove('fade-in-down', 'float-up');
     dashboard.style.opacity = '0';
-    dashboard.style.transform = 'translateY(-20px)';
-    setTimeout(() => {
-      dashboard.style.transition = 'opacity 1s ease, transform 1s ease';
-      dashboard.style.opacity = '1';
-      dashboard.style.transform = 'translateY(0)';
-    }, 10);
+    dashboard.style.transform = 'translateY(-30px)';
+
+    // fade in + down
+    dashboard.classList.add('fade-in-down');
+
+    // after fadeInDown ends, start floating up/down
+    dashboard.addEventListener('animationend', () => {
+      dashboard.classList.add('float-up');
+    }, { once: true });
   }
 
   loginBtn.addEventListener('click', () => {
@@ -212,12 +236,11 @@
       login(savedUser);
     } else {
       loginForm.style.display = 'block';
+      loginForm.classList.remove('fade-in-down', 'float-up');
       loginForm.style.opacity = '0';
-      loginForm.style.transform = 'translateY(-20px)';
+      loginForm.style.transform = 'translateY(-30px)';
       setTimeout(() => {
-        loginForm.style.transition = 'opacity 1s ease, transform 1s ease';
-        loginForm.style.opacity = '1';
-        loginForm.style.transform = 'translateY(0)';
+        loginForm.classList.add('fade-in-down');
       }, 10);
     }
   };
