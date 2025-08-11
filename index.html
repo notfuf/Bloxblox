@@ -172,6 +172,8 @@
   const loginBtn = document.getElementById('loginBtn');
   const usernameInput = document.getElementById('username');
   const logoutBtn = document.getElementById('logoutBtn');
+  const downloadOfflineBtn = document.getElementById('downloadOfflineBtn');
+  const downloadOnlineBtn = document.getElementById('downloadOnlineBtn');
 
   function setCookie(name, value, days) {
     const d = new Date();
@@ -226,6 +228,14 @@
     deleteCookie('bloxbloxUser');
     showLogin();
     usernameInput.value = '';
+  };
+
+  downloadOfflineBtn.onclick = () => {
+    window.open('https://mega.nz/file/a841EDSb#x9471UkbCW5PF3PmdiXVFW1P8815MwE8ibmFpeJJLdw', '_blank');
+  };
+
+  downloadOnlineBtn.onclick = () => {
+    alert('Online Edition download not implemented yet!');
   };
 
   const savedUser = getCookie('bloxbloxUser');
