@@ -88,7 +88,7 @@
     </div>
 
     <div id="redirectMessage">
-      Redirecting to https://notfuf.github.io/bloxblox/ in <span id="countdown">15</span> seconds…
+      Redirecting to <a href="https://notfuf.github.io/bloxblox/"><strong id="redirectUrl">https://notfuf.github.io/bloxblox/</strong></a> in <span id="countdown">15</span> seconds…
     </div>
   </div>
 
@@ -99,8 +99,8 @@
     const redirectMessage = document.getElementById("redirectMessage");
     const redirectUrlEl = document.getElementById("redirectUrl");
 
-    const baseUrl = window.location.origin + '/';
-    redirectUrlEl.textContent = https://notfuf.github.io/bloxblox/;
+    const baseUrl = 'https://notfuf.github.io/bloxblox/'; // Corrected URL
+    redirectUrlEl.textContent = baseUrl; // Set the visible URL
 
     const countdownInterval = setInterval(() => {
       timeLeft--;
